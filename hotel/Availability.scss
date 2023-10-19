@@ -1,0 +1,83 @@
+body{
+    margin: 0;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.header{
+    background-color: #E0E0E0;
+    display: flex;
+    align-items: center;
+
+    .title{
+        font-weight: 600;
+        font-size: 24px;
+        padding: 10px 20px;
+    }
+}
+
+.about{
+    margin: 20px;
+    
+    .class{
+        font-size: 18px;
+    }
+}
+
+.cabins{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+
+    .cabin{
+        text-align: center;
+        width: 150px;
+        margin: 5px;
+        padding: 5px 0;
+        border: 0.5px solid #000;
+
+        .top{
+            display: flex;
+
+            .number{
+                width: calc(10% - 10px);
+                text-align: left;
+                padding: 5px;
+            }
+            .type{
+                width: calc(90% - 10px);
+                padding: 5px;
+            }
+        }
+        .availability{
+            font-size: 30px;
+            font-weight: 600;
+            color: yellowgreen;
+        }
+        .availability_red{
+            font-size: 30px;
+            font-weight: 600;
+            color: red;
+        }
+        .status_value{
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .status{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 5px 0;
+
+            button{
+                display: block;
+                margin: 3px 20px;
+                width: calc(100% - 40px);
+                border: none;
+                transition: 0.3s background-color;
+            }
+            button:hover{
+                background-color: #ccc;
+            }
+        }
+    }
+}

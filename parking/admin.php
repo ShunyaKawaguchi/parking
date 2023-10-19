@@ -14,7 +14,7 @@ $nonce_id = nonce();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./admin.min.css">
-    <script src='./admin.min.js'></script>
+    <script src='../js/global.min.js'></script>
     <title>駐車場車室管理</title>
     <?php alert('message');?>
 </head>
