@@ -124,3 +124,56 @@ function about_plane(){
     echo "<div class='class'>【平置き】空車 : ".$plane_vacant."台 / 入庫中 : ".$plane_full."台 ( 宿泊：".$plane_stay."台 / 時間貸し：".$plane_temporary."台 )</div>";
 
 }
+
+function about_hiroof_web(){
+    $hiroof = 20;
+    $hiroof_stay = 0;
+    $hiroof_temporary = 0;
+
+    for ($cabin = 1; $cabin <= 20; $cabin++) {
+        $sql = "SELECT * FROM cabins WHERE id = ?";
+        global $parking_access;
+        $stmt = $parking_access->prepare($sql);
+        $stmt->bind_param("i", $cabin); 
+        $stmt->execute();
+        $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+            if( $row["status"] == 1 ){
+                $hiroof_stay++;
+            }elseif($row["status"] == 2){
+                $hiroof_temporary++;
+            }
+        }
+    }
+    $hiroof_vacant = $hiroof -  $hiroof_stay - $hiroof_temporary;
+
+    return $hiroof_vacant;
+
+}
+
+function about_common_web(){
+    $common = 20;
+    $common_stay = 0;
+    $common_temporary = 0;
+
+    for ($cabin = 21; $cabin <= 40; $cabin++) {
+        $sql = "SELECT * FROM cabins WHERE id = ?";
+        global $parking_access;
+        $stmt = $parking_access->prepare($sql);
+        $stmt->bind_param("i", $cabin); 
+        $stmt->execute();
+        $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+            if( $row["status"] == 1 ){
+                $common_stay++;
+            }elseif($row["status"] == 2){
+                $common_temporary++;
+            }
+        }
+    }
+    $common_vacant = $common -  $common_stay - $common_temporary;
+
+    return $common_vacant;    
+}
