@@ -68,3 +68,13 @@ function status( $status ){
         echo '時間貸し';
     }
 }
+
+function is_login(){
+    if(isset($_SESSION['login']) && $_SESSION['login']== 'on'){
+        return true;
+    }else{
+        $_SESSION["login_message"] = "ログインしてください。";
+        header("Location: ./login.php");
+        exit;
+    }
+}

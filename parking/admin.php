@@ -6,6 +6,8 @@ require_once(dirname(__FILE__).'/../database/connect-databese.php');
 require_once(dirname(__FILE__).'/material.php') ;
 //nonce
 $nonce_id = nonce();
+//ログインチェック
+is_login();
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +21,12 @@ $nonce_id = nonce();
     <?php alert('message');?>
 </head>
 <body>
-    <div class="header">
-        <div class="title">駐車場車室管理</div>
-    </div>
+    <form method="post" action="./logout.php">
+        <div class="header">
+            <div class="title">駐車場車室管理</div>
+            <button name='logout' class="logout">ログアウト→</button>
+        </div>
+    </form>
     <div class="main">
         <form method="post" action="./update_data.php">
             <input type='hidden' name='nonce_id' value="<?=$nonce_id;?>">

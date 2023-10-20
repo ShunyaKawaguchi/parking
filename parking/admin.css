@@ -7,12 +7,21 @@ body {
   background-color: #E0E0E0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .header .title {
   font-weight: 600;
   font-size: 24px;
   padding: 10px 20px;
+}
+
+.header .logout {
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #E0E0E0;
 }
 
 .cabins {
