@@ -38,6 +38,8 @@ function cabin(){
                 </div>
                 <?php if($row['status']==0 || $row['status']==null):?>
                     <div class="availability">◯</div>
+                <?php elseif($row['status']== 3):?>
+                    <div class="availability_reserve">予約</div>
                 <?php else:?>
                     <div class="availability_red">×</div>
                     <div class="status_red"><?php status( $row['status'] );?></div>
@@ -54,6 +56,11 @@ function create_button($id,$status){
     if($status==0 || $status==null){
         echo "<button name='stay' value=".$id.">宿泊</button>";
         echo "<button name='temporary' value=".$id.">時間貸し</button>";
+        echo "<button name='reserve' value=".$id.">予約</button>";
+    }elseif($status==3){
+        echo "<button name='stay' value=".$id.">宿泊</button>";
+        echo "<button name='temporary' value=".$id.">時間貸し</button>";
+        echo "<button name='cxl' value=".$id.">予約取消</button>";
     }else{
         echo "<button name='leave' value=".$id.">出庫</button>";
     }
@@ -66,6 +73,8 @@ function status( $status ){
         echo '宿泊';
     }elseif($status == 2){
         echo '時間貸し';
+    }elseif($status == 3){
+        echo '予約';
     }
 }
 

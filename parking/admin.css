@@ -64,6 +64,13 @@ body {
   color: red;
 }
 
+.cabins .cabin .availability_reserve {
+  font-size: 24px;
+  padding: 4.5px 0;
+  font-weight: 500;
+  color: red;
+}
+
 .cabins .cabin .status_red {
   font-size: 14px;
   font-weight: 600;

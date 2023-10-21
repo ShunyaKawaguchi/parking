@@ -13,6 +13,12 @@ if($_POST['nonce_id'] == $_SESSION['nonce_id']){
     }elseif(isset($_POST['leave'])){
         $status = 0;
         $id = $_POST['leave'];
+    }elseif(isset($_POST['reserve'])){
+        $status = 3;
+        $id = $_POST['reserve'];
+    }elseif(isset($_POST['cxl'])){
+        $status = 0;
+        $id = $_POST['cxl'];
     }else{
         $_SESSION['message'] = 'エラーが発生しました。やり直してください。';
         header("Location: ./admin.php");

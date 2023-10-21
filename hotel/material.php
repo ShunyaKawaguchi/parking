@@ -16,6 +16,9 @@ function cabin_hotel(){
                 <?php if($row['status']==0 || $row['status']==null):?>
                     <div class="availability">◯</div>
                     <div class="status_value"><?php status_hotel( $row['status'] );?></div>
+                <?php elseif($row['status']== 3):?>
+                    <div class="availability_red">△</div>
+                    <div class="status_value"><?php status_hotel( $row['status'] );?></div>
                 <?php else:?>
                     <div class="availability_red">×</div>
                     <div class="status_value"><?php status_hotel( $row['status'] );?></div>
@@ -32,6 +35,8 @@ function status_hotel( $status ){
         echo '宿泊';
     }elseif($status == 2){
         echo '時間貸し';
+    }elseif($status == 3){
+        echo '予約';
     }
 }
 
@@ -45,6 +50,7 @@ function about_hiroof(){
     $hiroof = 20;
     $hiroof_stay = 0;
     $hiroof_temporary = 0;
+    $hiroof_reserve = 0;
 
     for ($cabin = 1; $cabin <= 20; $cabin++) {
         $sql = "SELECT * FROM cabins WHERE id = ?";
@@ -59,13 +65,15 @@ function about_hiroof(){
                 $hiroof_stay++;
             }elseif($row["status"] == 2){
                 $hiroof_temporary++;
+            }elseif($row["status"] == 3){
+                $hiroof_reserve++;
             }
         }
     }
-    $hiroof_vacant = $hiroof -  $hiroof_stay - $hiroof_temporary;
+    $hiroof_vacant = $hiroof -  $hiroof_stay - $hiroof_temporary - $hiroof_reserve;
     $hiroof_full = $hiroof_stay + $hiroof_temporary;
 
-    echo "<div class='class'>【ハイルーフ】空車 : ".$hiroof_vacant."台 / 入庫中 : ".$hiroof_full."台 ( 宿泊：".$hiroof_stay."台 / 時間貸し：".$hiroof_temporary."台 )</div>";
+    echo "<div class='class'>【ハイルーフ】空車 : ".$hiroof_vacant."台 / 入庫中 : ".$hiroof_full."台 ( 宿泊：".$hiroof_stay."台 / 時間貸し：".$hiroof_temporary."台 / 予約 : ".$hiroof_reserve."台 )</div>";
 
 }
 
@@ -73,6 +81,7 @@ function about_common(){
     $common = 20;
     $common_stay = 0;
     $common_temporary = 0;
+    $common_reserve = 0;
 
     for ($cabin = 21; $cabin <= 40; $cabin++) {
         $sql = "SELECT * FROM cabins WHERE id = ?";
@@ -87,13 +96,15 @@ function about_common(){
                 $common_stay++;
             }elseif($row["status"] == 2){
                 $common_temporary++;
+            }elseif($row["status"] == 3){
+                $common_reserve++;
             }
         }
     }
-    $common_vacant = $common -  $common_stay - $common_temporary;
+    $common_vacant = $common -  $common_stay - $common_temporary - $common_reserve;
     $common_full = $common_stay + $common_temporary;
 
-    echo "<div class='class'>【普通車】空車 : ".$common_vacant."台 / 入庫中 : ".$common_full."台 ( 宿泊：".$common_stay."台 / 時間貸し：".$common_temporary."台 )</div>";
+    echo "<div class='class'>【普通車】空車 : ".$common_vacant."台 / 入庫中 : ".$common_full."台 ( 宿泊：".$common_stay."台 / 時間貸し：".$common_temporary."台 / 予約 : ".$common_reserve."台 )</div>";
 
 }
 
@@ -101,6 +112,7 @@ function about_plane(){
     $plane = 4;
     $plane_stay = 0;
     $plane_temporary = 0;
+    $plane_reserve = 0;
 
     for ($cabin = 41; $cabin <= 44; $cabin++) {
         $sql = "SELECT * FROM cabins WHERE id = ?";
@@ -115,13 +127,15 @@ function about_plane(){
                 $plane_stay++;
             }elseif($row["status"] == 2){
                 $plane_temporary++;
+            }elseif( $row["status"] == 3){
+                $plane_reserve++;
             }
         }
     }
-    $plane_vacant = $plane -  $plane_stay - $plane_temporary;
+    $plane_vacant = $plane -  $plane_stay - $plane_temporary - $plane_reserve;
     $plane_full = $plane_stay + $plane_temporary;
 
-    echo "<div class='class'>【平置き】空車 : ".$plane_vacant."台 / 入庫中 : ".$plane_full."台 ( 宿泊：".$plane_stay."台 / 時間貸し：".$plane_temporary."台 )</div>";
+    echo "<div class='class'>【平置き】空車 : ".$plane_vacant."台 / 入庫中 : ".$plane_full."台 ( 宿泊：".$plane_stay."台 / 時間貸し：".$plane_temporary."台 / 予約 : ".$plane_reserve."台 )</div>";
 
 }
 

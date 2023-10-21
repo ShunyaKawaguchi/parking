@@ -14,7 +14,7 @@ $common = about_common_web();
     <title>駐車場空き状況</title>
 </head>
 <body>
-    <p>定型駐車場：大和ハウスパーキング空き状況<br>
+    <p style="font-family:monospace;font-size:16px;">提携駐車場：大和ハウスパーキング空き状況<br>
         【ハイルーフ車】空車：<?=$hiroof;?>台 / 20台<br>
         【普通車】空車：<?=$common;?>台 / 20台
     </p>
